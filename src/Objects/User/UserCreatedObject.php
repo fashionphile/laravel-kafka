@@ -13,9 +13,11 @@ class UserCreatedObject extends KafkaObject
     private string|null $phone = null;
     private int|null $createdTimestamp = null;
 
-    public function setUuid(string $uuid)
+    public function setUuid(string $uuid) : self
     {
         $this->uuid = $uuid;
+
+        return $this;
     }
 
     public function getUuid() : ?string
@@ -23,9 +25,11 @@ class UserCreatedObject extends KafkaObject
         return $this->uuid;
     }
 
-    public function setFirstName(string $firstName)
+    public function setFirstName(string $firstName) : self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     public function getFirstName() : ?string
@@ -33,9 +37,11 @@ class UserCreatedObject extends KafkaObject
         return $this->firstName;
     }
 
-    public function setLastName(string $lastName)
+    public function setLastName(string $lastName) : self
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     public function getLastName() : ?string
@@ -43,9 +49,11 @@ class UserCreatedObject extends KafkaObject
         return $this->lastName;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(string $email) : self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     public function getEmail() : ?string
@@ -53,9 +61,11 @@ class UserCreatedObject extends KafkaObject
         return $this->email;
     }
 
-    public function setPhone(string $phone)
+    public function setPhone(string $phone) : self
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     public function getPhone() : ?string
@@ -63,9 +73,11 @@ class UserCreatedObject extends KafkaObject
         return $this->phone;
     }
 
-    public function setCreatedTimestamp(int $timestamp)
+    public function setCreatedTimestamp(int $timestamp) : self
     {
         $this->createdTimestamp = $timestamp;
+
+        return $this;
     }
 
     public function getCreatedTimestamp() : ?int

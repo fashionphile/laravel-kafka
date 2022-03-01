@@ -12,9 +12,11 @@ class UserUpdatedObject extends KafkaObject
     private string|null $email = null;
     private string|null $phone = null;
 
-    public function setUuid(string $uuid)
+    public function setUuid(string $uuid) : self
     {
         $this->uuid = $uuid;
+
+        return $this;
     }
 
     public function getUuid() : ?string
@@ -22,9 +24,11 @@ class UserUpdatedObject extends KafkaObject
         return $this->uuid;
     }
 
-    public function setFirstName(string $firstName)
+    public function setFirstName(string $firstName) : self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     public function getFirstName() : ?string
@@ -32,9 +36,11 @@ class UserUpdatedObject extends KafkaObject
         return $this->firstName;
     }
 
-    public function setLastName(string $lastName)
+    public function setLastName(string $lastName) : self
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     public function getLastName() : ?string
@@ -42,9 +48,11 @@ class UserUpdatedObject extends KafkaObject
         return $this->lastName;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(string $email) : self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     public function getEmail() : ?string
@@ -52,9 +60,11 @@ class UserUpdatedObject extends KafkaObject
         return $this->email;
     }
 
-    public function setPhone(string $phone)
+    public function setPhone(string $phone) : self
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     public function getPhone() : ?string
