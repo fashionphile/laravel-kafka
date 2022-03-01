@@ -17,7 +17,7 @@ class KafkaServiceProvider extends ServiceProvider
         });
     }
 
-    public function publishes(array $paths, $groups = null)
+    public function publishesConfiguration()
     {
         $this->publishes([
             __DIR__."/../../config/fashionphile-kafka.php" => config_path('fashionphile-kafka.php'),
