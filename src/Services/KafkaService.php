@@ -35,6 +35,6 @@ class KafkaService
             body: $message,
         );
 
-        Kafka::publishOn($topic, $this->brokers)->withMessage($message)->withDebugEnabled()->send();
+        Kafka::publishOn($topic, $this->brokers)->withMessage($message)->send();
     }
 }
