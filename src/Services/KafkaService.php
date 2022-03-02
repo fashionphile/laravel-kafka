@@ -13,17 +13,20 @@ class KafkaService
     public function __construct(
         protected string $cluster,
         protected array $topics,
+        protected string $brokers,
     )
     {}
 
     public function sendUserCreatedEvent(UserCreatedObject $userCreatedObject) : void
     {
-        $this->sendMessage($this->topics['user.created'], (new UserTransformer())->transform($userCreatedObject));
+        $this->sendMessage($this->topics['user']['created'],
+            (new UserTransformer())->transform($userCreatedObject));
     }
 
     public function sendUserUpdatedEvent(UserUpdatedObject $userUpdatedObject) : void
     {
-        $this->sendMessage($this->topics['user.updated'], (new UserTransformer())->transform($userUpdatedObject));
+        $this->sendMessage($this->topics['user']['updated'],
+            (new UserTransformer())->transform($userUpdatedObject));
     }
 
     private function sendMessage($topic, $message) : void
@@ -32,6 +35,6 @@ class KafkaService
             body: $message,
         );
 
-        Kafka::publishOn($topic)->withMessage($message);
+        Kafka::publishOn($topic, $this->brokers)->withMessage($message)->withDebugEnabled()->send();
     }
 }

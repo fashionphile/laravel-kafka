@@ -16,9 +16,10 @@ class KafkaServiceProvider extends ServiceProvider
     {
         $cluster = config('fashionphile-kafka.cluster');
         $topics = config('fashionphile-kafka.topics');
+        $brokers = config('fashionphile-kafka.brokers');
 
-        $this->app->singleton(KafkaService::class, function () use ($cluster, $topics) {
-            return new KafkaService($cluster, $topics);
+        $this->app->singleton(KafkaService::class, function () use ($cluster, $topics, $brokers) {
+            return new KafkaService($cluster, $topics, $brokers);
         });
     }
 
