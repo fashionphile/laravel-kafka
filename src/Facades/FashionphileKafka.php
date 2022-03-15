@@ -8,8 +8,7 @@ use Fashionphile\LaravelKafka\Services\KafkaService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static KafkaService sendUserCreatedEvent(UserCreatedObject $object)
- * @method static KafkaService sendUserUpdatedEvent(UserUpdatedObject $object)
+ * @method static KafkaService sendMessage(string $topic, array $message, string $bodySchemaName, string $keySchemaName = null)
  *
  * @mixin KafkaService
  */

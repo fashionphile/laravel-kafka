@@ -7,19 +7,14 @@ return [
     'cluster' => env('KAFKA_CLUSTER', 'controlcenter.cluster'),
 
     /*
-     | Topics
-     */
-    'topics' => [
-        'user' => [
-            'created' => 'user_created_event',
-            'updated' => 'user_updated_event',
-        ]
-    ],
-
-    /*
      | Your kafka brokers url.
      */
     'brokers' => env('KAFKA_BROKERS', 'localhost:9092'),
+
+    /*
+     | Your Confluent Schema Registry url
+     */
+    'schema_registry' => env('KAFKA_SCHEMA_REGISTRY_URL', 'localhost:8081'),
 
     /*
      | Kafka consumers belonging to the same consumer group share a group id.

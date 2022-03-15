@@ -2,9 +2,9 @@
 
 namespace Fashionphile\LaravelKafka\Services;
 
-use Fashionphile\LaravelKafka\Objects\User\UserCreatedObject;
-use Fashionphile\LaravelKafka\Objects\User\UserUpdatedObject;
+use Fashionphile\LaravelKafka\Serializers\Serializer;
 use Fashionphile\LaravelKafka\Transformers\UserTransformer;
+use Illuminate\Support\Str;
 use Junges\Kafka\Facades\Kafka;
 use Junges\Kafka\Message\Message;
 
@@ -12,29 +12,21 @@ class KafkaService
 {
     public function __construct(
         protected string $cluster,
-        protected array $topics,
         protected string $brokers,
+        protected Serializer $serializer
     )
     {}
 
-    public function sendUserCreatedEvent(UserCreatedObject $userCreatedObject) : void
+    public function sendMessage(
+        string $topic,
+        array $message,
+        string $bodySchemaName,
+        ?string $keySchemaName = null
+    ) : void
     {
-        $this->sendMessage($this->topics['user']['created'],
-            (new UserTransformer())->transform($userCreatedObject));
-    }
-
-    public function sendUserUpdatedEvent(UserUpdatedObject $userUpdatedObject) : void
-    {
-        $this->sendMessage($this->topics['user']['updated'],
-            (new UserTransformer())->transform($userUpdatedObject));
-    }
-
-    private function sendMessage($topic, $message) : void
-    {
-        $message = new Message(
-            body: $message,
-        );
-
-        Kafka::publishOn($topic, $this->brokers)->withMessage($message)->send();
+        $message = (new Message())->setTopicName("$topic-value")->withBody(json_encode($message));
+        $serializer = $this->serializer->serializerByTopic($topic, $bodySchemaName, $keySchemaName);
+        $producer = Kafka::publishOn($topic, $this->brokers);
+        $producer->withMessage($message)->send();
     }
 }

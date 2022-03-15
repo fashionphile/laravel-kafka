@@ -2,6 +2,7 @@
 
 namespace Fashionphile\LaravelKafka\Providers;
 
+use Fashionphile\LaravelKafka\Serializers\Serializer;
 use Fashionphile\LaravelKafka\Services\KafkaService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,11 +16,10 @@ class KafkaServiceProvider extends ServiceProvider
     public function register() : void
     {
         $cluster = config('fashionphile-kafka.cluster');
-        $topics = config('fashionphile-kafka.topics');
         $brokers = config('fashionphile-kafka.brokers');
 
-        $this->app->singleton(KafkaService::class, function () use ($cluster, $topics, $brokers) {
-            return new KafkaService($cluster, $topics, $brokers);
+        $this->app->singleton(KafkaService::class, function () use ($cluster, $brokers) {
+            return new KafkaService($cluster, $brokers, new Serializer());
         });
     }
 
