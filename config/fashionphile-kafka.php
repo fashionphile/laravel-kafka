@@ -2,11 +2,6 @@
 
 return [
     /*
-     | Kafka cluster to connect to
-     */
-    'cluster' => env('KAFKA_CLUSTER', 'controlcenter.cluster'),
-
-    /*
      | Your kafka brokers url.
      */
     'brokers' => env('KAFKA_BROKERS', 'localhost:9092'),
@@ -52,4 +47,14 @@ return [
      | Choose if debug is enabled or not.
      */
     'debug' => env('KAFKA_DEBUG', false),
+
+    /*
+     | SASL Configuration
+     */
+    'sasl' => [
+        'enabled' => env('KAFKA_SASL_ENABLED', false),
+        'username' => env('KAFLA_SASL_USERNAME', 'username'),
+        'password' => env('KAFKA_SASL_PASSWORD', 'secret'),
+        'use_ssl' => env('KAFKA_SASL_USE_SSL', false),
+    ]
 ];
