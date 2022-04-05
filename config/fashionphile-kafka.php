@@ -56,5 +56,14 @@ return [
         'username' => env('KAFLA_SASL_USERNAME', 'username'),
         'password' => env('KAFKA_SASL_PASSWORD', 'secret'),
         'use_ssl' => env('KAFKA_SASL_USE_SSL', false),
+    ],
+
+    /*
+     | Registry Auth Configuration
+     */
+    'schema-registry' => [
+        'use_auth' => env('KAFKA_SCHEMA_REGISTRY_USE_AUTH', false),
+        'username' => env('KAFKA_SCHEMA_REGISTRY_USERNAME', 'username'),
+        'password' => env('KAFKA_SCHEMA_REGISTRY_PASSWORD', 'password'),
     ]
 ];

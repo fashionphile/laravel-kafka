@@ -43,7 +43,7 @@ class KafkaService
                 securityProtocol: $protocol,
             );
 
-            $producer->withSasl();
+            $producer->withSasl($saslConfig);
         }
 
         $producer->send();

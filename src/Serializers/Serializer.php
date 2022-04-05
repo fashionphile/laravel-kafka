@@ -20,13 +20,17 @@ class Serializer
         ?string $keySchemaName = null
     ) : AvroSerializer
     {
+        $config = ['base_uri' => config('fashionphile-kafka.schema_registry')];
+
+        if (config('fashionphile-kafka.schema_registry.use_auth')) {
+            $config['auth'] = [
+                config('fashionphile-kafka.schema-registry.username'),
+                config('fashionphile-kafka.schema_registry.password'),
+            ];
+        }
+
         $cachedRegistry = new CachedRegistry(
-            new BlockingRegistry(
-                new PromisingRegistry(
-                    new Client(['base_uri' => config('fashionphile-kafka.schema_registry')])
-                )
-            ),
-            new AvroObjectCacheAdapter()
+            new BlockingRegistry(new PromisingRegistry(new Client($config))), new AvroObjectCacheAdapter()
         );
 
         $registry = new AvroSchemaRegistry($cachedRegistry);
