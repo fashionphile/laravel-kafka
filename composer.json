@@ -16,9 +16,6 @@
     ],
     "require": {
       "php": "^8.0",
-      "ext-rdkafka": "^4.0|^5.0|^6.0",
-      "monolog/monolog": "^2.3",
-      "flix-tech/avro-serde-php": "^1.7",
       "mateusjunges/laravel-kafka": "^1.7",
       "guzzlehttp/guzzle": "^7.0"
     },
